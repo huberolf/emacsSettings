@@ -37,3 +37,10 @@ https://github.com/emacs-dashboard/emacs-dashboard
 ;; Last used files
  (recentf-mode 1)
 #+END_SRC
+
+* Exports
+To export press C-c C-e
+#+BEGIN_SRC emacs-lisp 
+(use-package ox-twbs)
+(use-package ox-reveal)
+#+END_SRC
