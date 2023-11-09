@@ -1,0 +1,18 @@
+* Straight for package managing
+#+BEGIN_SRC emacs-lisp 
+(straight-use-package 'use-package)
+#+END_SRC
+
+* Which key
+Helping hand with the shortkeys.
+
+Repo: https://github.com/justbur/emacs-which-key
+
+#+BEGIN_SRC emacs-lisp 
+   (use-package which-key
+     :straight t
+	 :init (which-key-mode)
+	 :diminish which-key-mode
+	 :config
+ (setq which-key-idle-delay 0.3))
+#+END_SRC
