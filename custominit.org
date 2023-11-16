@@ -3,6 +3,11 @@
 (straight-use-package 'use-package)
 #+END_SRC
 
+* Config for pathing 
+#+BEGIN_SRC emacs-lisp 
+(load-file "<PATH TO HERE>/config.el")
+#+END_SRC
+
 * Which key
 Helping hand with the shortkeys.
 
@@ -44,3 +49,79 @@ To export press C-c C-e
 (use-package ox-twbs)
 (use-package ox-reveal)
 #+END_SRC
+
+* Theme
+#+begin_src emacs-lisp
+(use-package doom-themes
+  :ensure t
+  :config
+  ;; Global settings (defaults)
+  (setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+        doom-themes-enable-italic t) ; if nil, italics is universally disabled
+  (load-theme 'doom-one t)
+
+  ;; Enable flashing mode-line on errors
+  (doom-themes-visual-bell-config)
+  ;; Enable custom neotree theme (all-the-icons must be installed!)
+  (doom-themes-neotree-config)
+  ;; or for treemacs users
+  (setq doom-themes-treemacs-theme "doom-tomorrow-day") ; use "doom-colors" for less minimal icon theme
+  (doom-themes-treemacs-config)
+  ;; Corrects (and improves) org-mode's native fontification.
+  (doom-themes-org-config))
+#+end_src
+* Org
+** Org Superstar
+#+begin_src emacs-lisp
+(use-package org-superstar
+  :hook (org-mode . org-superstar-mode)
+  :custom
+ ;; (org-superstar-remove-leading-stars t)
+  (org-superstar-headline-bullets-list '("●" "○" "●" "○" "●" "○" "●")))  
+#+end_src
+** Org-Roam
+*** Base configuration
+#+BEGIN_SRC emacs-lisp 
+(use-package org-roam
+  :ensure t
+  :init
+  (setq org-roam-v2-ack t)
+  (setq org-roam-db-location org-roam-db-path)
+  :custom
+  (org-roam-directory org-roam-directory-dir)
+  (org-roam-completion-everywhere t)
+  :bind (("C-c n l" . org-roam-buffer-toggle)
+	   ("C-c n f" . org-roam-node-find)
+	   ("C-c n i" . org-roam-node-insert)
+	   ("C-c c" . org-roam-tag-add)
+	   :map org-mode-map
+	   ("C-M-i" . completion-at-point)
+	   :map org-roam-dailies-map
+	   ("Y" . org-roam-dailies-capture-yesterday)
+	   ("T" . org-roam-dailies-capture-tomorrow))
+  :bind-keymap
+  ("C-c n d" . org-roam-dailies-map)
+  :config
+  (require 'org-roam-dailies) ;; Ensure the keymap is available
+  (org-roam-db-autosync-mode))
+	
+(setq org-roam-dailies-directory "journal/")
+#+END_SRC
+
+*** UI 
+#+BEGIN_SRC emacs-lisp 
+(use-package org-roam-ui
+;;  :straight
+;;    (:host github :repo "org-roam/org-roam-ui" :branch "main" :files ("*.el" "out"))
+    :after org-roam
+;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
+;;         a hookable mode anymore, you're advised to pick something yourself
+;;         if you don't care about startup time, use
+;;  :hook (after-init . org-roam-ui-mode)
+    :config
+    (setq org-roam-ui-sync-theme t
+          org-roam-ui-follow t
+          org-roam-ui-update-on-save t
+          org-roam-ui-open-on-start t))
+#+END_SRC
+
