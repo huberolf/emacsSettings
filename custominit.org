@@ -5,7 +5,7 @@
 
 * Config for pathing 
 #+BEGIN_SRC emacs-lisp 
-(load-file "<PATH TO HERE>/config.el")
+(load-file "/mnt/c/Users/flbra/Workspace/emacsSettings/config.el")
 #+END_SRC
 
 * Which key
@@ -35,7 +35,7 @@ https://github.com/emacs-dashboard/emacs-dashboard
  (setq dashboard-items '((recents . 10)
  			  (bookmarks . 5)
  			  (agenda . 8)))
- (setq dashboard-init-info "Welcome Philipp!")
+ (setq dashboard-init-info "Welcome Flo!")
  (setq dashboard-startup-banner 'logo)
  (setq dashboard-display-icons-p t) ;; display icons on both GUI and terminal
  (setq dashboard-icon-type 'nerd-icons) ;; use `nerd-icons' package
@@ -125,3 +125,11 @@ To export press C-c C-e
           org-roam-ui-open-on-start t))
 #+END_SRC
 
+* deft
+#+begin_src emacs-lisp
+ (use-package deft)
+  (setq deft-extensions '("txt" "tex" "org"))
+;; Pfad zum Verzeichnis welches durchsucht werden soll
+  (setq deft-directory org-roam-directory-dir)
+  (setq deft-recursive t)
+#+end_src

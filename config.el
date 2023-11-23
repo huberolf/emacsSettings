@@ -1,7 +1,8 @@
 ;;Org Roam config
-(setq org-roam-directory-dir "<PATH TO ROAM DIR>")
+(setq org-roam-directory-dir "/mnt/c/Users/flbra/Documents/Roam/")
 (setq load-path-org-roam-ui-dir "~/.emacs.d/private/org-roam-ui")
 (setq org-roam-db-path "~/Databases/org-roam.db")
+(setq org-agenda-files-dir '("/mnt/c/Users/flbra/Documents/Roam/journal"))
 
 ;;encoding
 (prefer-coding-system 'utf-8)
